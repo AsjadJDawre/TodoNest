@@ -35,15 +35,17 @@ function App() {
   };
 
   useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
+  useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem('todos'));
     if (storedTodos && storedTodos.length > 0) {
       setTodos(storedTodos);
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
+
 
   return (
     <TodoProvider value={{ todos, addTodo, updateTodo, deleteTodo, toggleComplete }}>
